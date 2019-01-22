@@ -7,19 +7,20 @@ public class EmpVO {
 	 */
 	
 	private String empNum;
-	private String deptNum;
 	private String empName;
+	private String deptNum;
+	private String empPosition;
 	private String empPw;
 	private String birthday;
-	private String finalEducation;
-	private String finalSchool;
-	private String hp;
 	private String email;
-	private String zipCode;
-	private String address;
+	private String hp;
 	private String startWork;
 	private String endWork;
-	private String empPosition;
+	private String zipCode;
+	private String frontAddr;
+	private String rearAddr;
+	private String finalEducation;
+	private String finalSchool;
 	private String deptName;
 	
 	public String getEmpNum() {
@@ -28,17 +29,23 @@ public class EmpVO {
 	public void setEmpNum(String empNum) {
 		this.empNum = empNum;
 	}
+	public String getEmpName() {
+		return empName;
+	}
+	public void setEmpName(String empName) {
+		this.empName = empName;
+	}
 	public String getDeptNum() {
 		return deptNum;
 	}
 	public void setDeptNum(String deptNum) {
 		this.deptNum = deptNum;
 	}
-	public String getEmpName() {
-		return empName;
+	public String getEmpPosition() {
+		return empPosition;
 	}
-	public void setEmpName(String empName) {
-		this.empName = empName;
+	public void setEmpPosition(String empPosition) {
+		this.empPosition = empPosition;
 	}
 	public String getEmpPw() {
 		return empPw;
@@ -52,41 +59,17 @@ public class EmpVO {
 	public void setBirthday(String birthday) {
 		this.birthday = birthday;
 	}
-	public String getFinalEducation() {
-		return finalEducation;
-	}
-	public void setFinalEducation(String finalEducation) {
-		this.finalEducation = finalEducation;
-	}
-	public String getFinalSchool() {
-		return finalSchool;
-	}
-	public void setFinalSchool(String finalSchool) {
-		this.finalSchool = finalSchool;
-	}
-	public String getHp() {
-		return hp;
-	}
-	public void setHp(String hp) {
-		this.hp = hp;
-	}
 	public String getEmail() {
 		return email;
 	}
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	public String getZipCode() {
-		return zipCode;
+	public String getHp() {
+		return hp;
 	}
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
-	public String getAddress() {
-		return address;
-	}
-	public void setAddress(String address) {
-		this.address = address;
+	public void setHp(String hp) {
+		this.hp = hp;
 	}
 	public String getStartWork() {
 		return startWork;
@@ -100,11 +83,35 @@ public class EmpVO {
 	public void setEndWork(String endWork) {
 		this.endWork = endWork;
 	}
-	public String getEmpPosition() {
-		return empPosition;
+	public String getZipCode() {
+		return zipCode;
 	}
-	public void setEmpPosition(String empPosition) {
-		this.empPosition = empPosition;
+	public void setZipCode(String zipCode) {
+		this.zipCode = zipCode;
+	}
+	public String getFrontAddr() {
+		return frontAddr;
+	}
+	public void setFrontAddr(String frontAddr) {
+		this.frontAddr = frontAddr;
+	}
+	public String getRearAddr() {
+		return rearAddr;
+	}
+	public void setRearAddr(String rearAddr) {
+		this.rearAddr = rearAddr;
+	}
+	public String getFinalEducation() {
+		return finalEducation;
+	}
+	public void setFinalEducation(String finalEducation) {
+		this.finalEducation = finalEducation;
+	}
+	public String getFinalSchool() {
+		return finalSchool;
+	}
+	public void setFinalSchool(String finalSchool) {
+		this.finalSchool = finalSchool;
 	}
 	public String getDeptName() {
 		return deptName;
@@ -112,13 +119,16 @@ public class EmpVO {
 	public void setDeptName(String deptName) {
 		this.deptName = deptName;
 	}
+	
 	@Override
 	public String toString() {
-		return "EmpVO [empNum=" + empNum + ", deptNum=" + deptNum + ", empName=" + empName + ", empPw=" + empPw
-				+ ", birthday=" + birthday + ", finalEducation=" + finalEducation + ", finalSchool=" + finalSchool
-				+ ", hp=" + hp + ", email=" + email + ", zipCode=" + zipCode + ", address=" + address + ", startWork="
-				+ startWork + ", endWork=" + endWork + ", empPosition=" + empPosition + ", deptName=" + deptName + "]";
+		return "EmpVO [empNum=" + empNum + ", empName=" + empName + ", deptNum=" + deptNum + ", empPosition="
+				+ empPosition + ", empPw=" + empPw + ", birthday=" + birthday + ", email=" + email + ", hp=" + hp
+				+ ", startWork=" + startWork + ", endWork=" + endWork + ", zipCode=" + zipCode + ", frontAddr="
+				+ frontAddr + ", rearAddr=" + rearAddr + ", finalEducation=" + finalEducation + ", finalSchool="
+				+ finalSchool + ", deptName=" + deptName + "]";
 	}
+	
 	
 	
 	

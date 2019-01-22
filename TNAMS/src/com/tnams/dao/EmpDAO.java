@@ -66,7 +66,7 @@ public class EmpDAO extends CommonDao {
 			return list;
 		}
 		
-		//사원 정보 등록하는 테이블 empRegist.jsp
+		/*//사원 정보 등록하는 테이블 empRegist.jsp
 		public void insertEmp(EmpVO eVo) {
 			
 			String sql = "INSERT INTO TBL_EMP(EMP_NUM"
@@ -100,9 +100,10 @@ public class EmpDAO extends CommonDao {
 				st.setString(6, eVo.getHp());
 				st.setString(7, eVo.getEmail());
 				st.setString(8, eVo.getZipCode());
-				st.setString(9, eVo.getAddress());
-				st.setString(10, eVo.getStartWork());
-				st.setString(11, eVo.getEmpPosition());
+				st.setString(9, eVo.getFrontAddr());
+				st.setString(10, eVo.getRearAddr());
+				st.setString(11, eVo.getStartWork());
+				st.setString(12, eVo.getEmpPosition());
 
 				st.executeUpdate();
 			} catch (SQLException e) {
@@ -110,9 +111,9 @@ public class EmpDAO extends CommonDao {
 			} finally {
 				dbClose();
 			}
-		}
+		}*/
 		
-		//사원 정보를 수정하는 메소드
+		/*//사원 정보를 수정하는 메소드
 		public void updateEmp (EmpVO eVo) {
 			   
 			   String sql = "UPDATE TBL_EMP SET EMP_NAME = ?,"
@@ -148,7 +149,7 @@ public class EmpDAO extends CommonDao {
 			       st.setString(6, eVo.getFinalSchool());
 			       st.setString(7, eVo.getHp());
 			       st.setString(10, eVo.getZipCode());
-			       st.setString(11, eVo.getAddress());
+			       st.setString(11, eVo.getRearAddr());
 			       st.setString(12, eVo.getStartWork());
 			       st.setString(13, eVo.getEndWork());
 			       
@@ -157,7 +158,7 @@ public class EmpDAO extends CommonDao {
 			   }finally {
 				   dbClose();
 			   }
-		   }  
+		   }  */
 		
 		//사원 정보 삭제하는 메소드
 		public void deleteEmp(EmpVO eVo) {

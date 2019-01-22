@@ -5,6 +5,8 @@ import com.tnams.action.Action;
 import com.tnams.action.MainAction;
 import com.tnams.action.dept.DeptListFormAction;
 import com.tnams.action.emp.EmpListFormAction;
+import com.tnams.action.emp.EmpRegistAction;
+import com.tnams.action.emp.EmpRegistFormAction;
 
 
 //package 모든 액션 받음
@@ -41,7 +43,17 @@ public class ActionFactory {
 
          action = new EmpListFormAction();
 
-      } else if (command.equals("deptListForm")) {
+      } else if (command.equals("empRegistForm")) {
+
+          action = new EmpRegistFormAction();
+
+      } else if (command.equals("empRegist")) {
+
+          action = new EmpRegistAction();
+
+      }
+      
+      else if (command.equals("deptListForm")) {
     	  
     	  action = new DeptListFormAction();
     	  

@@ -59,7 +59,7 @@
 					<a type="button" class="btn btn-default" id="submitbutton" style="float: right"
 					href="/emp?command=empModifyForm">전체수정</a>
 					<a type="button" class="btn btn-primary" id="newBtn" style="float: right"
-					>신규 등록</a>
+					href="/emp?command=empRegistForm">신규 등록</a>
 					</div>
 					</div>
 					</form>
