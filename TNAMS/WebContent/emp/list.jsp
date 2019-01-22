@@ -48,7 +48,7 @@
 								<tr>
 									<td style="text-align: center;">${EmpVO.empNum}</td>
 									<td style="text-align: center;">
-									<a href="emp?command=empRead&empNum=${EmpVO.empNum}">${EmpVO.empName}</a></td>
+									<a href="emp?command=empModifyForm&empNum=${EmpVO.empNum}">${EmpVO.empName}</a></td>
 									<td style="text-align: center;">${EmpVO.deptName}</td>
 									<td style="text-align: center;">${EmpVO.empPosition}</td>
 								</tr>

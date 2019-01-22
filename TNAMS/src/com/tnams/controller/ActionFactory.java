@@ -5,6 +5,8 @@ import com.tnams.action.Action;
 import com.tnams.action.MainAction;
 import com.tnams.action.dept.DeptListFormAction;
 import com.tnams.action.emp.EmpListFormAction;
+import com.tnams.action.emp.EmpModifyAction;
+import com.tnams.action.emp.EmpModifyFormAction;
 import com.tnams.action.emp.EmpRegistAction;
 import com.tnams.action.emp.EmpRegistFormAction;
 
@@ -50,6 +52,14 @@ public class ActionFactory {
       } else if (command.equals("empRegist")) {
 
           action = new EmpRegistAction();
+
+      } else if (command.equals("empModifyForm")) {
+
+          action = new EmpModifyFormAction();
+
+      } else if (command.equals("empModify")) {
+
+          action = new EmpModifyAction();
 
       }
       

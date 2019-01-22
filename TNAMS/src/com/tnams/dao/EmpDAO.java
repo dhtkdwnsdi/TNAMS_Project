@@ -66,24 +66,26 @@ public class EmpDAO extends CommonDao {
 			return list;
 		}
 		
-		/*//사원 정보 등록하는 테이블 empRegist.jsp
+		//사원 정보 등록하는 테이블 empRegist.jsp
 		public void insertEmp(EmpVO eVo) {
 			
 			String sql = "INSERT INTO TBL_EMP(EMP_NUM"
-					+ "                      ,DEPT_NUM"
-					+ "                      ,EMP_NAME"
 					+ "                      ,EMP_PW"
+					+ "                      ,EMP_NAME"
+					+ "                      ,DEPT_NUM"
+					+ "						 ,EMP_POSITION"
 					+ "                      ,BIRTHDAY"
-					+ "						 ,FINAL_EDUCATION"
-					+ "						 ,FINAL_SCHOOL"
-					+ "	 					 ,HP"
 					+ "						 ,EMAIL"
-					+ "						 ,ZIP_CODE"
-					+ "						 ,ADDRESS"
+					+ "	 					 ,HP"
 					+ "						 ,START_WORK"
-					+ "						 ,EMP_POSITION)"
-					+ "   VALUES(TO_CHAR(sysdate,'YYYY')||emp_seq.nextval, ?, ?,"
-					+ "			 default, ?, ?, ?, ?, ?, ?, ?, ?,";
+					+ "						 ,END_WORK"
+					+ "						 ,ZIP_CODE"
+					+ "						 ,FRONT_ADDR"
+					+ "						 ,REAR_ADDR"
+					+ "						 ,FINAL_EDUCATION"
+					+ "						 ,FINAL_SCHOOL)"
+					+ "   VALUES(TO_CHAR(sysdate,'YYYY')||emp_seq.nextval, default,"
+					+ "			 ?, ?, ?, ?, ?, ?, ?, null, ?, ?, ?, ?, ?";
 
 			Connection conn = null;
 			PreparedStatement st = null	;
@@ -92,18 +94,18 @@ public class EmpDAO extends CommonDao {
 				conn = getConnection();
 				st = conn.prepareStatement(sql);
 
-				st.setString(1, eVo.getDeptNum());
-				st.setString(2, eVo.getEmpName());
-				st.setString(3, eVo.getBirthday());
-				st.setString(4, eVo.getFinalEducation());
-				st.setString(5, eVo.getFinalSchool());
+				st.setString(1, eVo.getEmpName());
+				st.setString(2, eVo.getDeptNum());
+				st.setString(3, eVo.getEmpPosition());
+				st.setString(4, eVo.getBirthday());
+				st.setString(5, eVo.getEmail());
 				st.setString(6, eVo.getHp());
-				st.setString(7, eVo.getEmail());
+				st.setString(7, eVo.getStartWork());
 				st.setString(8, eVo.getZipCode());
 				st.setString(9, eVo.getFrontAddr());
 				st.setString(10, eVo.getRearAddr());
-				st.setString(11, eVo.getStartWork());
-				st.setString(12, eVo.getEmpPosition());
+				st.setString(11, eVo.getFinalEducation());
+				st.setString(12, eVo.getFinalSchool());
 
 				st.executeUpdate();
 			} catch (SQLException e) {
@@ -111,26 +113,24 @@ public class EmpDAO extends CommonDao {
 			} finally {
 				dbClose();
 			}
-		}*/
+		}
 		
-		/*//사원 정보를 수정하는 메소드
+		//사원 정보를 수정하는 메소드
 		public void updateEmp (EmpVO eVo) {
 			   
 			   String sql = "UPDATE TBL_EMP SET EMP_NAME = ?,"
 			   		+ "							DEPT_NUM = ?,"
 			   		+ "							EMP_POSITION = ?,"
-			   		+ "							MARRIED = ?,"
-			   		+ "							FINAL_EDUCATION = ?,"
-			   		+ "							FINAL_SCHOOL = ?,"
+			   		+ "							BIRTHDAY = ?,"
+			   		+ "							EMAIL = ?,"
 			   		+ "							HP = ?,"
-			   		+ "							EMAIL_ID = ?,"
-			   		+ "							EMAIL_ADDRESS = ?,"
-			   		+ "							ZIP_CODE = ?,"
-			   		+ "							ADDRESS = ?,"
 			   		+ "							START_WORK = ?,"
 			   		+ "							END_WORK = ?,"
-			   		+ "							BANK_NAME = ?,"
-			   		+ "							BANK_ACCOUNT = ?,"
+			   		+ "							ZIP_CODE = ?,"
+			   		+ "							FRONT_ADDR = ?,"
+			   		+ "							REAR_ADDR = ?,"
+			   		+ "							FINAL_EDUCATION = ?,"
+			   		+ "							FINAL_SCHOOL = ?,"
 			   		+ "		  WHERE EMP_NUM = ?";
 			   
 			   Connection conn = getConnection();
@@ -145,20 +145,24 @@ public class EmpDAO extends CommonDao {
 			       st.setString(1, eVo.getEmpName());
 			       st.setString(2, eVo.getDeptNum());
 			       st.setString(3, eVo.getEmpPosition());
-			       st.setString(5, eVo.getFinalEducation());
-			       st.setString(6, eVo.getFinalSchool());
-			       st.setString(7, eVo.getHp());
-			       st.setString(10, eVo.getZipCode());
+			       st.setString(4, eVo.getBirthday());
+			       st.setString(5, eVo.getEmail());
+			       st.setString(6, eVo.getHp());
+			       st.setString(7, eVo.getStartWork());
+			       st.setString(8, eVo.getEndWork());
+			       st.setString(9, eVo.getZipCode());
+			       st.setString(10, eVo.getFrontAddr());
 			       st.setString(11, eVo.getRearAddr());
-			       st.setString(12, eVo.getStartWork());
-			       st.setString(13, eVo.getEndWork());
+			       st.setString(12, eVo.getFinalEducation());
+			       st.setString(13, eVo.getFinalSchool());
+			       st.setString(13, eVo.getEmpNum());
 			       
 			   }catch (SQLException e){
 				   e.printStackTrace();
 			   }finally {
 				   dbClose();
 			   }
-		   }  */
+		   }  
 		
 		//사원 정보 삭제하는 메소드
 		public void deleteEmp(EmpVO eVo) {

@@ -36,7 +36,7 @@
 				<!-- /.box-header -->
 
 				<form id='frm' role="form" onsubmit="return validateEmptyVal()"
-					method="post" class="form-horizontal">
+					method="post" class="form-horizontal" action="emp?command=empRegist">
 
 					<div class="box-body box-form-custom">
 						<div class="form-group input-short">
@@ -196,9 +196,7 @@
 						<!-- /.box-body -->
 
 						<div class="box-footer btn-group-center">
-							<a
-								href="/admin/emp/list?page=${cri.page}&perPageNum=${cri.perPageNum}&searchType=${cri.searchType}&keyword=${cri.keyword}"
-								type="button" class="btn btn-cancel">취소</a>
+							<input type="reset" class="btn btn-cancel" value="취소"/>
 							<button type="submit" class="btn btn-primary">등록</button>
 						</div>
 					</div>
