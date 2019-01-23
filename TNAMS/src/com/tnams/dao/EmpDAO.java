@@ -22,7 +22,7 @@ public class EmpDAO extends CommonDao {
 			return instance;
 		}
 	
-		//사원이름, 사원번호, 부서명, 직급 출력하는 메소드	empList.jsp
+		//사원이름, 사원번호, 부서명, 직급 출력하는 메소드	emp/list.jsp
 		public List<EmpVO> selectEmp() {
 			
 			String sql = "SELECT e.EMP_NUM AS empNum"

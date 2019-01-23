@@ -2,24 +2,33 @@
 package com.tnams.vo;
 
 public class CommuteVO {
-
+	
+	private String commuteNum;
 	private String workDate;
-	private String empNum;
+	private String empName;
 	private String goToWorkTime;
 	private String offWorkTime;
 	private String commuteRemarks;
 	
+	
+	public String getCommuteNum() {
+		return commuteNum;
+	}
+	public void setCommuteNum(String commuteNum) {
+		this.commuteNum = commuteNum;
+	}
 	public String getWorkDate() {
 		return workDate;
 	}
 	public void setWorkDate(String workDate) {
 		this.workDate = workDate;
 	}
-	public String getEmpNum() {
-		return empNum;
+	
+	public String getEmpName() {
+		return empName;
 	}
-	public void setEmpNum(String empNum) {
-		this.empNum = empNum;
+	public void setEmpName(String empName) {
+		this.empName = empName;
 	}
 	public String getGoToWorkTime() {
 		return goToWorkTime;
@@ -39,12 +48,14 @@ public class CommuteVO {
 	public void setCommuteRemarks(String commuteRemarks) {
 		this.commuteRemarks = commuteRemarks;
 	}
-	
 	@Override
 	public String toString() {
-		return "CommuteVO [workDate=" + workDate + ", empNum=" + empNum + ", goToWorkTime=" + goToWorkTime
-				+ ", offWorkTime=" + offWorkTime + ", commuteRemarks=" + commuteRemarks + "]";
+		return "CommuteVO [commuteNum=" + commuteNum + ", workDate=" + workDate + ", empName=" + empName
+				+ ", goToWorkTime=" + goToWorkTime + ", offWorkTime=" + offWorkTime + ", commuteRemarks="
+				+ commuteRemarks + "]";
 	}
+	
+	
 	
 
 }

@@ -157,7 +157,7 @@
 							class="fa fa-angle-left pull-right"></i> <!--  <span class="label label-primary pull-right">4</span> -->
 					</a>
 						<ul class="treeview-menu">
-							<li><a href="score?command=scoreListForm"><i
+							<li><a href="commute?command=commuteListForm"><i
 									class="fa fa-magic"></i> 출결 목록</a></li>
 							<li><a href="mis?command=mis_list_form"><i
 									class="fa fa-magic"></i> 근태 목록</a></li>

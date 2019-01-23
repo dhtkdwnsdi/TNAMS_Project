@@ -3,6 +3,7 @@ package com.tnams.controller;
 
 import com.tnams.action.Action;
 import com.tnams.action.MainAction;
+import com.tnams.action.commute.CommuteListFormAction;
 import com.tnams.action.dept.DeptListFormAction;
 import com.tnams.action.emp.EmpListFormAction;
 import com.tnams.action.emp.EmpModifyAction;
@@ -60,6 +61,10 @@ public class ActionFactory {
       } else if (command.equals("empModify")) {
 
           action = new EmpModifyAction();
+
+      } else if (command.equals("commuteListForm")) {
+
+          action = new CommuteListFormAction();
 
       }
       
