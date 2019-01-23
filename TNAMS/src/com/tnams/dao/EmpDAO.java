@@ -66,6 +66,69 @@ public class EmpDAO extends CommonDao {
 			return list;
 		}
 		
+		//사원 번호를 통해서 modify.jsp로 넘어가는 메소드
+		
+				public List<EmpVO> readEmp(String empNum) {
+					
+					String sql = "SELECT EMP_NAME AS empName"
+							+ "			,DEPT_NUM AS deptNum"
+							+ "			,EMP_POSITION AS empPosition"
+							+ "			,BIRTHDAY AS birthday"
+							+ "			,EMAIL AS email"
+							+ "			,HP AS hp"
+							+ "			,START_WORK AS startWork"
+							+ "			,END_WORK AS endWork"
+							+ "			,ZIP_CODE AS zipCode"
+							+ "			,FRONT_ADDR AS frontAddr"
+							+ "			,REAR_ADDR AS rearAddr"
+							+ "			,FINAL_EDUCATION AS finalEducation"
+							+ "			,FINAL_SCHOOL AS finalSchool"
+							+ "	    FROM TBL_EMP"
+							+ "	   WHERE EMP_NUM = '" + empNum +"'";
+
+					List<EmpVO> list = new ArrayList<EmpVO>();
+					Connection conn = null;
+					Statement stmt = null;
+					ResultSet rs = null;
+
+					try {
+						conn = getConnection();
+						stmt = conn.prepareStatement(sql);
+						rs = stmt.executeQuery(sql);
+
+						while (rs.next()) {
+							EmpVO eVo = new EmpVO();
+
+							eVo.setEmpName(rs.getString("empName"));
+							eVo.setDeptNum(rs.getString("deptNum"));
+							eVo.setEmpPosition(rs.getString("empPosition"));
+							eVo.setBirthday(rs.getString("birthday"));
+							eVo.setEmail(rs.getString("email"));
+							eVo.setHp(rs.getString("hp"));
+							eVo.setStartWork(rs.getString("startWork"));
+							eVo.setEndWork(rs.getString("endWork"));
+							eVo.setZipCode(rs.getString("zipCode"));
+							eVo.setFrontAddr(rs.getString("frontAddr"));
+							eVo.setRearAddr(rs.getString("rearAddr"));
+							eVo.setFinalEducation(rs.getString("finalEducation"));
+							eVo.setFinalSchool(rs.getString("finalSchool"));
+							
+							list.add(eVo);
+						}
+						
+					} catch (SQLException e) {
+						
+						e.printStackTrace();
+						
+					} finally {
+						
+						dbClose();
+						
+					}
+					
+					return list;
+				}
+		
 		//사원 정보 등록하는 테이블 empRegist.jsp
 		public void insertEmp(EmpVO eVo) {
 			
@@ -85,7 +148,7 @@ public class EmpDAO extends CommonDao {
 					+ "						 ,FINAL_EDUCATION"
 					+ "						 ,FINAL_SCHOOL)"
 					+ "   VALUES(TO_CHAR(sysdate,'YYYY')||emp_seq.nextval, default,"
-					+ "			 ?, ?, ?, ?, ?, ?, ?, null, ?, ?, ?, ?, ?";
+					+ "			 ?, ?, ?, ?, ?, ?, TO_DATE(?,'YYYY-MM-DD'), null, ?, ?, ?, ?, ?)";
 
 			Connection conn = null;
 			PreparedStatement st = null	;
@@ -124,13 +187,13 @@ public class EmpDAO extends CommonDao {
 			   		+ "							BIRTHDAY = ?,"
 			   		+ "							EMAIL = ?,"
 			   		+ "							HP = ?,"
-			   		+ "							START_WORK = ?,"
-			   		+ "							END_WORK = ?,"
+			   		+ "							START_WORK = TO_DATE(?,'YYYY-MM-DD'),"
+			   		+ "							END_WORK = TO_DATE(?,'YYYY-MM-DD'),"
 			   		+ "							ZIP_CODE = ?,"
 			   		+ "							FRONT_ADDR = ?,"
 			   		+ "							REAR_ADDR = ?,"
 			   		+ "							FINAL_EDUCATION = ?,"
-			   		+ "							FINAL_SCHOOL = ?,"
+			   		+ "							FINAL_SCHOOL = ?"
 			   		+ "		  WHERE EMP_NUM = ?";
 			   
 			   Connection conn = getConnection();
@@ -155,7 +218,7 @@ public class EmpDAO extends CommonDao {
 			       st.setString(11, eVo.getRearAddr());
 			       st.setString(12, eVo.getFinalEducation());
 			       st.setString(13, eVo.getFinalSchool());
-			       st.setString(13, eVo.getEmpNum());
+			       st.setString(14, eVo.getEmpNum());
 			       
 			   }catch (SQLException e){
 				   e.printStackTrace();

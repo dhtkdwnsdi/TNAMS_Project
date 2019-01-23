@@ -3,24 +3,34 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
+
+<!-- Bootstrap 3.3.4 -->
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+	<!-- <link rel="stylesheet" href="/css/jquery-ui.min.css"> -->
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css"/>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+    <script type='text/javascript' src='//code.jquery.com/jquery-1.8.3.js'></script>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker3.min.css">
+    <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
+    <script src="../resources/js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
+
 <%@include file="../include/header.jsp"%>
 
 
 <script type="text/javascript">
 	//캘린더
 	$(function() {
-		$('#datetimepicker6').datetimepicker();
-		$('#datetimepicker7').datetimepicker({
-			useCurrent : false
-		//Important! See issue #1075
-		});
-		$("#datetimepicker6").on("dp.change", function(e) {
-			$('#datetimepicker7').data("DateTimePicker").minDate(e.date);
-		});
-		$("#datetimepicker7").on("dp.change", function(e) {
-			$('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+		$('.input-group.date').datepicker({
+			calendarWeeks : false,
+			todayHighlight : true,
+			autoclose : true,
+			format : "yyyy-mm-dd",
+			language : "kr"
 		});
 	});
+
 </script>
 
 <!-- Main content -->
@@ -36,7 +46,8 @@
 				<!-- /.box-header -->
 
 				<form id='frm' role="form" onsubmit="return validateEmptyVal()"
-					method="post" class="form-horizontal" action="emp?command=empRegist">
+					method="post" class="form-horizontal"
+					action="emp?command=empRegist">
 
 					<div class="box-body box-form-custom">
 						<div class="form-group input-short">
@@ -81,7 +92,7 @@
 								</select>
 							</div>
 						</div>
-						
+
 						<div class="form-group input-short">
 							<label for="exampleInputEmail1" class="col-sm-2 control-label">
 								생년월일 <span class="must-mark">*</span>
@@ -117,22 +128,30 @@
 								입사 날짜<span class="must-mark">*</span>
 							</label>
 							<div class="col-sm-4">
-								<div class='input-group date' id='datetimepicker6'>
+								<div class="input-group date">
+									<input type="text" class="form-control"  name="startWork" placeholder="입사일을 입력하세요.">
+									<span class="input-group-addon">
+									<i class="glyphicon glyphicon-calendar"></i></span>
+
+								</div>
+								<!-- <div class="input-group input-append date" id="dateRangePicker"></div> -->
+								<!-- <div class='input-group date' id='datetimepicker6'>
 									<span class="input-group-addon" id="sdate-addon"> <span
 										class="glyphicon glyphicon-calendar"></span>
 									</span> <input type='text' aria-describedby="sdate-addon"
-										class="form-control" name="workDate" placeholder="입사일을 입력하세요." />
-								</div>
+										class="form-control" name="startWork" placeholder="입사일을 입력하세요." />
+								</div> -->
 							</div>
 							<div class="col-sm-2 wave-mark">~</div>
+							
 							<div class="col-sm-4">
-								<div class='input-group date' id='datetimepicker7'>
-									<span class="input-group-addon"> <span
-										class="glyphicon glyphicon-calendar"></span>
-									</span> <input type='text' class="form-control" name="endDate"
-										placeholder="퇴사일을 입력하세요." readonly />
+								<div class="input-group date">
+									<input type="text" class="form-control"  name="endWork" placeholder="퇴사일을 입력하세요.">
+									<span class="input-group-addon">
+									<i class="glyphicon glyphicon-calendar"></i></span>
+
 								</div>
-							</div>
+						</div>
 						</div>
 
 						<div class="form-group input-long">
@@ -169,12 +188,12 @@
 								<input name='rearAddr' class="form-control" placeholder="상세주소">
 							</div>
 						</div>
-						
+
 						<div class="form-group input-short">
 							<label for="exampleInputEmail1" class="col-sm-2 control-label">
 								최종학력 </label>
 							<div class="col-sm-10">
-								<select class="form-control" name="finalEducation" >
+								<select class="form-control" name="finalEducation">
 									<option value="중학교졸">중학교졸</option>
 									<option value="고등학교졸">고등학교졸</option>
 									<option value="전문대졸">전문대졸</option>
@@ -196,7 +215,7 @@
 						<!-- /.box-body -->
 
 						<div class="box-footer btn-group-center">
-							<input type="reset" class="btn btn-cancel" value="취소"/>
+							<input type="reset" class="btn btn-cancel" value="취소" />
 							<button type="submit" class="btn btn-primary">등록</button>
 						</div>
 					</div>
