@@ -11,7 +11,6 @@ import com.tnams.action.emp.EmpModifyFormAction;
 import com.tnams.action.emp.EmpRegistAction;
 import com.tnams.action.emp.EmpRegistFormAction;
 
-
 //package 모든 액션 받음
 
 /**
@@ -23,17 +22,17 @@ import com.tnams.action.emp.EmpRegistFormAction;
  */
 public class ActionFactory {
 
-   private static ActionFactory instance = new ActionFactory();
+	private static ActionFactory instance = new ActionFactory();
 
-   private ActionFactory() {
-      super();
-   }
+	private ActionFactory() {
+		super();
+	}
 
-   public static ActionFactory getInstance() {
-      return instance;
-   }
+	public static ActionFactory getInstance() {
+		return instance;
+	}
 
-   public Action getAction(String command) {
+	public Action getAction(String command) {
       Action action = null;
 
       System.out.println("ActionFactory : " + command);
@@ -73,28 +72,124 @@ public class ActionFactory {
     	  action = new DeptListFormAction();
     	  
       }
-     /* else if (command.equals("salaryListForm")) {
-         action = new SalaryListFormAction();
+     /**
+      * @author 이유진
+      */
+      
+      else if (command.equals("deptModify")) {
+
+          action = new DeptModifyAction();
+
+       } else if (command.equals("deptDelete")) {
+
+          action = new DeptDeleteAction();
+
+       } else if (command.equals("deptRead")) {
+
+          action = new DeptReadAction();
+
+       } else if (command.equals("deptRegist")){
+
+          action = new DeptRegistAction(); 
+
+       } else if (command.equals("deptListForm")) {
+
+          action = new DeptListFormAction();
+
+       } else if (command.equals("deptModifyForm")) {
+
+          action = new DeptModifyFormAction();
+
+       } else if (command.equals("deptReadForm")) {
+
+          action = new DeptReadFormAction();
+
+       } else if (command.equals("deptRegistForm")) {
+
+          action = new DeptRegistFormAction();
+          
+       } else if (command.equals("extraPayListForm")) {
+
+          action = new extraPayListFormAction();
+          
+       }else if (command.equals("extraPayModify")) {
+
+          action = new extraPayModifyAction();
+          
+       }else if (command.equals("extraPayModifyForm")) {
+
+          action = new extraPayModifyFormAction();
+          
+       }else if (command.equals("extraPayRegist")) {
+
+          action = new extraPayRegistAction();
+          
+       }else if (command.equals("extraPayRegistForm")) {
+
+          action = new extraPayRegistFormAction();
+          
+       }else if (command.equals("extraPayDelete")) {
+
+          action = new extraPayDeleteAction();
+          
+       }
+      
+      /**
+       * @author 박주희
+       */
+      
+       else if (command.equals("salaryListForm")) {
+           action = new SalaryListFormAction();
+           
+        } else if (command.equals("salaryRegistForm")) {
+           action = new SalaryRegistFormAction();
+           
+        } else if (command.equals("salaryRegist")) {
+           action = new SalaryRegistAction();
+           
+        } else if (command.equals("salaryNumCheck")) {
+           action = new SalaryCheckAction();
+           
+        }else if (command.equals("salaryModifyForm")) {
+           action = new SalaryModifyFormAction();
+           
+        } else if (command.equals("salaryDelete")) {
+           action = new SalaryDeleteAction();
+           
+        } else if (command.equals("salaryModify")) {
+           action = new SalaryModifyAction();
+        }
+      
+      /**
+       *@author 강문정 
+       *
+       */
+      
+    //근태항목 조회 리스트
+        else if(command.equals("attendItemList")) {
          
-      } else if (command.equals("salaryRegistForm")) {
-         action = new SalaryRegistFormAction();
+         action =  new AttendItemListAction();
+        }
          
-      } else if (command.equals("salaryRegist")) {
-         action = new SalaryRegistAction();
-         
-      } else if (command.equals("salaryNumCheck")) {
-         action = new SalaryCheckAction();
-         
-      }else if (command.equals("salaryModifyForm")) {
-         action = new SalaryModifyFormAction();
-         
-      } else if (command.equals("salaryDelete")) {
-         action = new SalaryDeleteAction();
-         
-      } else if (command.equals("salaryModify")) {
-         action = new SalaryModifyAction();
-      }
-*/
+      //근태항목 등록폼
+        else if (command.equals("attendItemRegForm")) {
+         action = new AttendItemRegFormAction();
+   
+      //근태항목 등록
+        } else if (command.equals("attendItemReg")) {
+           
+           action = new AttendItemRegAction();
+           
+       //근태항목 수정폼    
+        } else if (command.equals("attendItemUpdateForm")) {
+           
+           action = new AttendItemUpdateFormAction();
+       
+       //근태항목 수정    
+        } else if (command.equals("attendItemUpdate")) {
+           
+           action = new AttendItemUpdateAction();
+       
       return action;
 
    }
