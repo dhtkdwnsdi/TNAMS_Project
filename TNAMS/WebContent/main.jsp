@@ -18,7 +18,7 @@
 			<div class="box">
 				<div class="box-header with-border">
 					<div class="box-title">
-						<h3> ${sessionScope.LoginUser} 님 반갑습니다.
+						<h3> ${sessionScope.LoginUser} 님 반갑습니다.s
 						</h3>
 						<img src = "/resources/images/tnamsmain.png">
 					<!-- 	<img alt="" src="/resources/admin/dist/img/gvmsimage.PNG"> -->
