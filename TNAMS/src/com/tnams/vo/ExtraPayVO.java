@@ -1,56 +1,54 @@
 package com.tnams.vo;
 
 public class ExtraPayVO {
-   
-   private String ExtraPayNum;
-   private String EmpNum;
-   private String SalaryNum;
-   private String PaymentDate;
-   private int Price;
-   private String ExtraPayRemarks;
-   
-   public String getExtraPayNum() {
-      return ExtraPayNum;
-   }
-   public void setExtraPayNum(String extraPayNum) {
-      ExtraPayNum = extraPayNum;
-   }
-   public String getEmpNum() {
-      return EmpNum;
-   }
-   public void setEmpNum(String empNum) {
-      EmpNum = empNum;
-   }
-   public String getSalaryNum() {
-      return SalaryNum;
-   }
-   public void setSalaryNum(String salaryNum) {
-      SalaryNum = salaryNum;
-   }
-   public String getPaymentDate() {
-      return PaymentDate;
-   }
-   public void setPaymentDate(String paymentDate) {
-      PaymentDate = paymentDate;
-   }
-   public int getPrice() {
-      return Price;
-   }
-   public void setPrice(int price) {
-      Price = price;
-   }
-   public String getExtraPayRemarks() {
-      return ExtraPayRemarks;
-   }
-   public void setExtraPayRemarks(String extraPayRemarks) {
-      ExtraPayRemarks = extraPayRemarks;
-   }
-   @Override
-   public String toString() {
-      return "ExtraPayVO [ExtraPayNum=" + ExtraPayNum + ", EmpNum=" + EmpNum + ", SalaryNum=" + SalaryNum
-            + ", PaymentDate=" + PaymentDate + ", Price=" + Price + ", ExtraPayRemarks=" + ExtraPayRemarks + "]";
-   }
-   
-   
 
+	private String extraPayNum;
+	private String empNum;
+	private String salaryNum;
+	private String paymentDate;
+	private String price;
+	private String extraPayRemarks;
+	public String getExtraPayNum() {
+		return extraPayNum;
+	}
+	public void setExtraPayNum(String extraPayNum) {
+		this.extraPayNum = extraPayNum;
+	}
+	public String getEmpNum() {
+		return empNum;
+	}
+	public void setEmpNum(String empNum) {
+		this.empNum = empNum;
+	}
+	public String getSalaryNum() {
+		return salaryNum;
+	}
+	public void setSalaryNum(String salaryNum) {
+		this.salaryNum = salaryNum;
+	}
+	public String getPaymentDate() {
+		return paymentDate;
+	}
+	public void setPaymentDate(String paymentDate) {
+		this.paymentDate = paymentDate;
+	}
+	public String getPrice() {
+		return price;
+	}
+	public void setPrice(String price) {
+		this.price = price;
+	}
+	public String getExtraPayRemarks() {
+		return extraPayRemarks;
+	}
+	public void setExtraPayRemarks(String extraPayRemarks) {
+		this.extraPayRemarks = extraPayRemarks;
+	}
+	@Override
+	public String toString() {
+		return "ExtraPayVO [extraPayNum=" + extraPayNum + ", empNum=" + empNum + ", salaryNum=" + salaryNum
+				+ ", paymentDate=" + paymentDate + ", price=" + price + ", extraPayRemarks=" + extraPayRemarks + "]";
+	}
+
+	
 }

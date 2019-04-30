@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.tnams.vo.CommuteVO;
+import com.tnams.vo.EmpVO;
 
 public class CommuteDAO extends CommonDao {
 
@@ -23,7 +24,7 @@ public class CommuteDAO extends CommonDao {
 	}
 
 	// 일자, 사원명, 출근일시, 퇴근일시, 비고 출력하는 commute/list.jsp
-	public List<CommuteVO> selectCommute() {
+	public List<CommuteVO> selectCommute(String empNum) {
 
 		String sql = "SELECT C.COMMUTE_NUM AS commuteNum,"
 				+ "			 TO_CHAR(C.WORK_DATE, 'YYYY-MM-DD') AS workDate, " 
@@ -32,17 +33,19 @@ public class CommuteDAO extends CommonDao {
 				"			 TO_CHAR(C.OFF_WORK_TIME, 'YYYYMMDDHHMI') AS offWorkTime, "
 				+ "			 C.COMMUTE_REMARKS AS commuteRemarks" + 
 				"		FROM TBL_COMMUTE C, TBL_EMP E"
-				+ "		WHERE E.EMP_NUM = C.EMP_NUM";
+				+ "		WHERE E.EMP_NUM = C.EMP_NUM AND  E.EMP_NUM= ?";
 
 		List<CommuteVO> list = new ArrayList<CommuteVO>();
 		Connection conn = null;
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		ResultSet rs = null;
 
 		try {
 			conn = getConnection();
 			stmt = conn.prepareStatement(sql);
-			rs = stmt.executeQuery(sql);
+			stmt.setString(1, empNum);
+			rs = stmt.executeQuery();
+			
 
 			while (rs.next()) {
 				CommuteVO cVo = new CommuteVO();
@@ -64,4 +67,41 @@ public class CommuteDAO extends CommonDao {
 		}
 		return list;
 	}
+	
+	
+	
+	public void insertCommute(CommuteVO cVo) {
+        
+        String sql = "INSERT INTO TBL_COMMUTE(COMMUTE_NUM"
+        		+ "					   , GO_TO_WORK_TIME"
+              + "                      , OFF_WORK_TIME"
+              + "                      , COMMUTE_REMARKS"
+              + "                      , EMP_NUM"
+              + "                   , WORK_DATE)"
+              + "   VALUES(commute_seq.nextval, TO_DATE(?,'YYYY-MM-DD HH:MI:SS'), TO_DATE(?,'YYYY-MM-DD HH:MI:SS') , ? , ? , sysdate)";
+
+        Connection conn = null;
+        PreparedStatement st = null   ;
+
+        System.out.println(sql);
+        
+        try {
+           conn = getConnection();
+           st = conn.prepareStatement(sql);
+
+           st.setString(1, cVo.getGoToWorkTime());
+           st.setString(2, cVo.getOffWorkTime());
+           st.setString(3, cVo.getCommuteRemarks());
+           st.setString(4, cVo.getEmpName());
+
+           st.executeUpdate();
+           
+        } catch (SQLException e) {
+           e.printStackTrace();
+        } finally {
+           dbClose();
+        }
+     }
+	
+	
 }

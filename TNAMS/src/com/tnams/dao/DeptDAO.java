@@ -4,17 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.naming.Context;
-import javax.naming.InitialContext;
-import javax.sql.DataSource;
-
 import com.tnams.vo.DeptVO;
-
-import util.DBManager;
 
 public class DeptDAO extends CommonDao{
    
@@ -101,39 +94,33 @@ private DeptDAO() {
    }   
    
    //등록
-   public void registDept(DeptVO dVo) throws Exception {
-         String sql = "insert into TBL_DEPT ("
-               + "               , DEPT_NUM"
-               + "               , DEPT_NAME"
-               + "               , DEPT_PHONENUM"
-               + "          values ("
-               + "                  , DEPT_SEQ.NEXTVAL"
-               + "                  , ?"
-               + "                , ?)";
+   public void insertDept(DeptVO dVo) {
+        
+         String sql = "insert into TBL_DEPT (dept_num, dept_name, dept_phonenum) values(dept_seq.nextval,?,?)";
 
-         Connection conn = null;
-         PreparedStatement pstmt = null;
+         Connection conn = getConnection();
+         PreparedStatement pstmt;
 
          try {
-            conn = getConnection();
+
             pstmt = conn.prepareStatement(sql);
 
-            pstmt.setString(1, dVo.getDept_num());
-            pstmt.setString(2, dVo.getDept_name());
-            pstmt.setString(3, dVo.getDept_phonenum());
+            //pstmt.setString(1, dVo.getDept_num());
+            pstmt.setString(1, dVo.getDept_name());
+            pstmt.setString(2, dVo.getDept_phonenum());
             pstmt.executeUpdate();
 
          } catch (SQLException e) {
             e.printStackTrace();
 
          } finally {
-            //dbClose();
+            dbClose();
          }
    }
    
    //수정
-   public void modifyDept(DeptVO dVo) throws Exception{
-         String sql = "UPDATE DEPT SET DEPT_NAME=?, DEPT_PHONENUM=? WHERE DEPT_NUM=?";
+   public void updateDept(DeptVO dVo) throws Exception{
+         String sql = "UPDATE TBL_DEPT SET DEPT_NAME=?, DEPT_PHONENUM=? WHERE DEPT_NUM=?";
          Connection conn = null;
          PreparedStatement pstmt = null;
 
@@ -141,31 +128,31 @@ private DeptDAO() {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
 
-            pstmt.setString(1, dVo.getDept_num());
-            pstmt.setString(2, dVo.getDept_name());
-            pstmt.setString(3, dVo.getDept_phonenum());
+            pstmt.setString(1, dVo.getDept_name());
+            pstmt.setString(2, dVo.getDept_phonenum());
+            pstmt.setString(3, dVo.getDept_num());
 
             pstmt.executeUpdate();
 
          } catch (SQLException e) {
             e.printStackTrace();
          } finally {
-            //dbClose();
+            dbClose();
          }
       }
    
    //삭제
-    public void deleteDept(DeptVO dVo) {
+    public int deleteDept(Object deptNumIndivi) {
 
-         String sql = "DELETE * FROM TBL_DEPT WHERE DEPT_NUM=?";
+         String sql = "DELETE FROM TBL_DEPT WHERE DEPT_NUM=?";
 
          Connection conn = null;
-         PreparedStatement pstmt = null;
+         PreparedStatement pstmt;
          try {
             conn = getConnection();
             pstmt = conn.prepareStatement(sql);
             
-            pstmt.setString(1, dVo.getDept_num());
+            pstmt.setString(1, (String)deptNumIndivi);
             
             pstmt.executeUpdate();
 
@@ -173,6 +160,7 @@ private DeptDAO() {
             e.printStackTrace();
          }
          dbClose();
+      return 0;
       }
     
     //검색

@@ -25,7 +25,7 @@
                      <div class="row">
                         <div class="col-md-2 col-xs-4">
                            <select class="form-control" name="searchType">
-                              <option>--</option>
+                               <option>--</option>
                               <option value="dept_num"
                                  <c:out value="${cri.searchType eq 'dept_num'?'selected':''}"/>>
                                  부서 번호
@@ -36,7 +36,7 @@
                               </option>
                               <option value="dept_phonenum"
                                  <c:out value="${cri.searchType eq 'dept_phonenum'?'selected':''}"/>>
-                                 부서 연락처
+                                 연락처
                               </option>
                            </select>
                         </div>
@@ -52,18 +52,22 @@
                      </div>
                      </form>
                   </div>
-                  <table class="table table-striped">
+                  
+                  <form action="dept?command=deptDelete" method="post">
+                  <table class="table table-striped" id="user-table">
+                  <thead>
                      <tr>
                         <th>부서번호</th>
                         <th>부서명</th>
                         <th>부서 연락처</th>
                      </tr>
+                  </thead>
                      <c:forEach items="${list}" var="DeptVO">
+                     <tbody>
                         <tr>
-                           <td style="text-align: center;">${DeptVO.dept_num}</td>
+                           <td style="text-align: center;"><input type="checkbox" value="${DeptVO.dept_num}" name="deptCheck" id="deptCheck"></td>
                            <td style="text-align: center;"><a
-                              href='/dept?command=deptModifyForm${pageMaker.makeSearch(pageMaker.cri.page) }
-                                 &dept_num=${DeptVO.dept_num}'>
+                              href="dept?command=deptModifyForm&dept_num=${DeptVO.dept_num}">
                                  ${DeptVO.dept_name} </a>
                            </td>
                            <td style="text-align: center;">${DeptVO.dept_phonenum}</td>
@@ -72,10 +76,6 @@
                      </c:forEach>
    
                   </table>
-               </div>
-               <!-- /.box-body -->
-   
-   
                <div class="box-footer">
    
                   <div class="text-center">
@@ -101,15 +101,23 @@
                      </ul>
                   </div> <!-- .text-center END -->
                   <div class="btn-group-custom">
-                     <a type="button" href="dept?command=deptRegistForm" class="btn btn-default">신규 등록</a>
+                     <a type="button" href="dept?command=deptRegistForm" class="btn btn-default">등록</a>
                   </div>
+                  <div class="btn-group-custom">
+                     <input type="submit" class="btn btn-default" value="삭제"/>
+                  </div> 
+                  </div>
+                  </form>
+                  
+               </div>
                </div> <!-- .box-footer END -->
+               
             </div> <!-- .box-wrap END -->
          </div>
       </div>
+                  
       <!--/.col (left) -->
 
-   </div>
    <!-- /.row -->
 </section>
 <!-- /.content -->
@@ -119,7 +127,10 @@
 
    if (result == 'SUCCESS') {
       alert("처리가 완료되었습니다.");
+   }else(result == 'FAIL'){
+      alert("실패");
    }
+
 </script>
 
 <script>
@@ -145,6 +156,24 @@
             });
 
          });
+      var arrSal = document.getElementsByName("deptCheck");
+
+       for (var i = 0; i < arrSal.length; i++) {
+          if (arrSal[i].checked == true) {
+             isChk = true;
+             break;
+          }
+       }
+
+       if (!isChk) {
+          alert("선택된 부서 항목이 없습니다.");
+       } else {
+          alert("삭제되었습니다.")
+          formObj.submit();
+       }
+
+
+
 </script>
 
 <%@include file="../include/footer.jsp"%>

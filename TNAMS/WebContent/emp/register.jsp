@@ -16,6 +16,7 @@
     <script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"></script>
     <script src="../resources/js/bootstrap-datepicker.kr.js" charset="UTF-8"></script>
 
+	<script type="text/javascript" src="resources/js/regi.js"></script>
 <%@include file="../include/header.jsp"%>
 
 
@@ -45,7 +46,7 @@
 				</div>
 				<!-- /.box-header -->
 
-				<form id='frm' role="form" onsubmit="return validateEmptyVal()"
+				<form id="frm" name="frm" role="form" onsubmit="return validateEmptyVal()"
 					method="post" class="form-horizontal"
 					action="emp?command=empRegist">
 
@@ -70,6 +71,11 @@
 										<option value="${comp.compNum}">${comp.compName}</option>
 									</c:forEach> --%>
 									<option value="1">영업부</option>
+									<option value="2">관리부</option>
+									<option value="3">영업지원부</option>
+									<option value="4">인사부</option>
+									<option value="5">경영지원부</option>
+									
 								</select>
 							</div>
 						</div>
@@ -146,7 +152,7 @@
 							
 							<div class="col-sm-4">
 								<div class="input-group date">
-									<input type="text" class="form-control"  name="endWork" placeholder="퇴사일을 입력하세요.">
+									<input type="text" class="form-control"  name="endWork" placeholder="퇴사일을 입력하세요." disabled>
 									<span class="input-group-addon">
 									<i class="glyphicon glyphicon-calendar"></i></span>
 
@@ -336,36 +342,31 @@
 
 	//유효성 검사
 	function validateEmptyVal() {
-		if (document.getElementsByName("empName")[0].value == "") {
+		if (document.frm.empName.value == "") {
 			alert("사원이름을 입력해주세요");
-			document.getElementsByName("empName")[0].focus();
+			document.frm.empName.focus();
 			return false;
-		}
-		if (document.getElementsByName("deptNum")[0].value == "") {
-			alert("부서명을 선택해주세요");
-			return false;
-		}
-		if (document.getElementsByName("empPosition")[0].value == "") {
-			alert("직급을 선택해주세요");
-			return false;
-		}
-		if (document.getElementsByName("email")[0].value == "") {
+		} else if (document.frm.email.value == "") {
 			alert("이메일을 입력해주세요");
-			document.getElementsByName("email")[0].focus();
+			document.frm.email.focus();
 			return false;
-		}
-		if (document.getElementsByName("brithday")[0].value == "") {
+		}else if (document.frm.brithday.value == "") {
 			alert("생년월일를 입력해주세요");
-			document.getElementsByName("brithday")[0].focus();
+			document.frm.brithday.focus();
 			return false;
-		}
-		if (document.getElementsByName("hp")[0].value == "") {
+		}else if (document.frm.hp.value == "") {
 			alert("휴대폰번호를 입력해주세요");
-			document.getElementsByName("hp")[0].focus();
+			document.frm.hp.focus();
 			return false;
-		}
-		if (document.getElementsByName("workDate")[0].value == "") {
+		}else if (document.frm.startWork.value == "") {
 			alert("입사일을 선택해주세요");
+			return false;
+		}else if (document.frm.frontAddr.value == "") {
+			alert("주소를 입력해주세요");
+			return false;
+		}else if (document.frm.rearAddr.value == "") {
+			alert("상세주소를 입력해주세요");
+			document.frm.rearAddr.focus();
 			return false;
 		}
 

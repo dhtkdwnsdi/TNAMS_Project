@@ -1,7 +1,6 @@
 package com.tnams.action.emp;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,13 +27,13 @@ public class EmpModifyFormAction implements Action {
 		request.setAttribute("empNum", empNum);
 
 		System.out.println("empNum : " + empNum);
-		////////////////////
 
-		List<EmpVO> empList = eDao.readEmp(empNum);
 
-		request.setAttribute("empList", empList);
+		EmpVO eVo = eDao.readEmp(empNum);
 
-		System.out.println(empList);
+		request.setAttribute("eVo", eVo);
+
+		System.out.println(eVo);
 
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);

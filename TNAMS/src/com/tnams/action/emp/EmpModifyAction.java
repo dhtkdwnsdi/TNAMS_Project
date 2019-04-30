@@ -18,7 +18,7 @@ public class EmpModifyAction implements Action {
 			throws ServletException, IOException, Exception {
 		// TODO Auto-generated method stub
 		
-String url ="/emp?command=empListForm";
+		String url ="/emp?command=empListForm";
 		
 		String empNum = request.getParameter("empNum");
 		request.setAttribute("empNum", empNum);

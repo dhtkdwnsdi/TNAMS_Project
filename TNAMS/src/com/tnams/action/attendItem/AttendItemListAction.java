@@ -15,24 +15,27 @@ import com.tnams.vo.AttendItemVO;
 
 public class AttendItemListAction implements Action {
 
-	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String url = "/user/list.jsp";
+   @Override
+   public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+      
+      System.out.println("attendItemList 액션 진입!!");
+      
+      String url = "user/list.jsp";
 
-		AttendItemDAO aDao = AttendItemDAO.getInstance();
+      AttendItemDAO aDao = AttendItemDAO.getInstance();
 
-		List<AttendItemVO> attendItemList = new ArrayList<AttendItemVO>();
+      List<AttendItemVO> attendItemList = new ArrayList<AttendItemVO>();
 
-		// 조회
-		attendItemList = aDao.selectAllAttendItem();
-		request.setAttribute("attendItemList", attendItemList);
-		System.out.println(attendItemList);
+      // 조회
+      attendItemList = aDao.selectAllAttendItem();
+      request.setAttribute("attendItemList", attendItemList);
+      System.out.println(attendItemList);
 
-		RequestDispatcher dispatcher = request.getRequestDispatcher(url);// url을
-		// 찍어줘야됨
-		dispatcher.forward(request, response);
-	
-	
-	}
+      RequestDispatcher dispatcher = request.getRequestDispatcher(url);// url을
+      // 찍어줘야됨
+      dispatcher.forward(request, response);
+   
+   
+   }
 
 }

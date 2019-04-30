@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +10,7 @@
 	content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no'
 	name='viewport'>
 <!-- Bootstrap 3.3.4 -->
-<link href="../resources/admin/bootstrap/css/bootstrap.min.css"
+<link href="resources/admin/bootstrap/css/bootstrap.min.css"
 	rel="stylesheet" type="text/css" />
 <!-- Font Awesome Icons -->
 <link
@@ -21,17 +21,17 @@
 	href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"
 	rel="stylesheet" type="text/css" />
 <!-- Theme style -->
-<link href="../resources/admin/dist/css/AdminLTE.min.css"
+<link href="resources/admin/dist/css/AdminLTE.min.css"
 	rel="stylesheet" type="text/css" />
-<!-- AdminLTE Skins. Choose a skin from the css/skins 	
+<!-- AdminLTE Skins. Choose a skin from the css/skins    
          folder instead of downloading all of them to reduce the load. -->
-<link href="../resources/admin/dist/css/skins/_all-skins.min.css"
+<link href="resources/admin/dist/css/skins/_all-skins.min.css"
 	rel="stylesheet" type="text/css" />
 <!-- CUSTOM STYLE | Created  by. KAYH -->
-<link href="../resources/admin/custom.css" rel="stylesheet"
+<link href="resources/admin/custom.css" rel="stylesheet"
 	type="text/css" />
 <!-- CSS | Preloader Styles -->
-<link href="../resources/css/preloader.css" rel="stylesheet"
+<link href="resources/css/preloader.css" rel="stylesheet"
 	type="text/css">
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -43,12 +43,19 @@
 
 </head>
 <!-- jQuery 2.1.4 -->
-<script src="../resources/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-<script src="../resources/js/jquery-ui.min.js"></script>
-<script src="../resources/js/bootstrap.min.js"></script>
+<script src="resources/admin/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+<script src="resources/js/jquery-ui.min.js"></script>
+<script src="resources/js/bootstrap.min.js"></script>
+
+<script>
+/* $(document).ready(function(){
+	var id="${sessionScope.LoginUser}";
+	alert("id : "+id);
+}) */
+</script>
 
 <!-- JS | jquery plugin collection for this theme -->
-<script src="../resources/js/jquery-plugin-collection.js"></script>
+<script src="resources/js/jquery-plugin-collection.js"></script>
 
 <body class="skin-blue sidebar-mini">
 	<div class="wrapper">
@@ -93,13 +100,12 @@
 						<li class="dropdown user user-menu"><a href="#"
 							class="dropdown-toggle" data-toggle="dropdown"> <img
 								src="../resources/admin/dist/img/user2-160x160.jpg"
-								class="user-image" alt="User Image" /> <span class="hidden-xs">관리자님
-									반갑습니다.</span>
+								class="user-image" alt="User Image" /> <span class="hidden-xs"> ${sessionScope.LoginUser} 님 반갑습니다.</span>
 						</a>
 							<ul class="dropdown-menu">
 								<!-- User image -->
 								<li class="user-header"><img
-									src="../resources/admin/dist/img/user2-160x160.jpg"
+									src="/resources/admin/dist/img/user2-160x160.jpg"
 									class="img-circle" alt="User Image" />
 									<p></p></li>
 								<!-- Menu Body -->
@@ -138,48 +144,75 @@
 				<!-- Sidebar user panel -->
 				<div class="user-panel">
 					<div class="pull-left image">
-						<img src="../resources/admin/dist/img/user2-160x160.jpg"
+						<img src="resources/admin/dist/img/user2-160x160.jpg"
 							class="img-circle" alt="User Image" />
 					</div>
 					<div class="pull-left info">
-						<p>관리자</p>
-						<a class="btn-logout" href="main?command=logout"><i
+						<p>${LoginUser}</p>
+						<a class="btn-logout" href="logout.do"><i
 							class="fa fa-power-off"></i> 로그아웃</a>
 					</div>
 				</div>
 				<!-- search form -->
 				<!-- /.search form -->
 				<!-- sidebar menu: : style can be found in sidebar.less -->
-				<ul class="sidebar-menu">
-					<li class="header">관리자 메뉴</li>
-					<li class="treeview"><a href="#"> <i class="fa fa-laptop"></i>
-							<!-- fa-files-o --> <span>근태 관리</span> <i
-							class="fa fa-angle-left pull-right"></i> <!--  <span class="label label-primary pull-right">4</span> -->
-					</a>
-						<ul class="treeview-menu">
-							<li><a href="commute?command=commuteListForm"><i
-									class="fa fa-magic"></i> 출결 목록</a></li>
-							<li><a href="mis?command=mis_list_form"><i
-									class="fa fa-magic"></i> 근태 목록</a></li>
-							<li><a href="mis?command=mis_list_form"><i
-									class="fa fa-magic"></i> 수당 목록</a></li>
-						</ul></li>
 
-					<li class="treeview"><a href="#"> <i class="fa fa-book"></i>
-							<span>기초정보관리</span> <i class="fa fa-angle-left pull-right"></i>
-					</a>
-						<ul class="treeview-menu">
-							<li><a href="dept?command=deptListForm"><i
-									class="fa fa-magic"></i> 부서 목록</a></li>
-							<li><a href="emp?command=empListForm"><i
-									class="fa fa-magic"></i> 사원 목록</a></li>
-							<li><a href="student?command=studentListForm"><i
-									class="fa fa-magic"></i> 근태 항목 목록</a></li>
-							<li><a href="student?command=studentListForm"><i
-									class="fa fa-magic"></i> 급여 항목 목록</a></li>
-						</ul></li>
+				
 
-				</ul>
+				<c:if test="${sessionScope.LoginUser eq 'admin'}">
+					<ul class="sidebar-menu">
+						<li class="header">관리자 메뉴</li>
+						<li class="treeview"><a href="#"> <i class="fa fa-laptop"></i>
+								<!-- fa-files-o --> <span>근태 관리</span> <i
+								class="fa fa-angle-left pull-right"></i> <!--  <span class="label label-primary pull-right">4</span> -->
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="commute?command=commuteListForm"><i
+										class="fa fa-magic"></i> 출결 목록</a></li>
+								<li><a href="attend?command=attendList"><i
+										class="fa fa-magic"></i> 근태 목록</a></li>
+								<li><a href="extraPay?command=extraPayListForm"><i
+										class="fa fa-magic"></i> 수당 목록</a></li>
+							</ul></li>
+
+						<li class="treeview"><a href="#"> <i class="fa fa-book"></i>
+								<span>기초정보관리</span> <i class="fa fa-angle-left pull-right"></i>
+						</a>
+							<ul class="treeview-menu">
+								<li><a href="dept?command=deptListForm"><i
+										class="fa fa-magic"></i> 부서 목록</a></li>
+								<li><a href="emp?command=empListForm"><i
+										class="fa fa-magic"></i> 사원 목록</a></li>
+								<li><a href="attendItem?command=attendItemList"><i
+                           class="fa fa-magic"></i> 근태 항목 목록</a></li>
+								<li><a href="salary?command=salaryListForm"><i
+										class="fa fa-magic"></i> 급여 항목 목록</a></li>
+							</ul></li>
+
+					</ul>
+				</c:if>
+				<c:if test="${sessionScope.LoginUser ne 'admin'}">
+					<ul class="sidebar-menu">
+						<li class="header">사용자 메뉴</li>
+						<!-- 사용자 메뉴 추가 -->
+						
+						<li class="treeview"><a href="#"> <i class="fa fa-laptop"></i>
+								<!-- fa-files-o --> <span>내정보 관리</span> <i
+								class="fa fa-angle-left pull-right"></i> <!--  <span class="label label-primary pull-right">4</span> -->
+						</a>
+							<ul class="treeview-menu">
+							
+							<!-- command 바꾸기 -->
+								<li><a href="emp?command=empModifySelfForm"><i
+										class="fa fa-magic"></i> 내정보 수정 </a></li>
+								<li><a href="commute?command=commuteRegistForm"><i
+										class="fa fa-magic"></i> 출결 등록 </a></li>
+							</ul></li>
+
+					</ul>
+						
+				</c:if>
+
 			</section>
 			<!-- /.sidebar -->
 		</aside>
@@ -193,17 +226,17 @@
 				</h1>
 			</section>
 
-		<script>
-			$(document).ready(function() {
-				$(".btn-logout").on("click", function() {
+			<script>
+				$(document).ready(function() {
+					$(".btn-logout").on("click", function() {
 
-					var ok = confirm("정말 로그아웃 하시겠습니까?");
-					if (ok == true) {
-						self.location = "/admin/logout";
-					} else {
-						return false;
-					}
+						var ok = confirm("정말 로그아웃 하시겠습니까?");
+						if (ok == true) {
+							self.location = "logout.do";
+						} else {
+							return false;
+						}
 
+					});
 				});
-			});
-		</script>
+			</script>

@@ -117,18 +117,18 @@
 											</c:when>
 											<c:otherwise>
 												<tr>
-													<td colspan="7" class="txt_center" align="center"><b>수정할
+													<td colspan="7" class="txt_center" align="center"><b>출근 현황
 															데이터가 없습니다.</b></td>
 												</tr>
 											</c:otherwise>
 										</c:choose>
 									</table>
-									<div class="box-footer btn-group-center">
-										<button type="button" class="btn btn-primary">수정</button>
+<!-- 									<div class="box-footer btn-group-center">
+										<a type="button" href ="commute?command=commuteRegistForm" class="btn btn-primary">등록</a>
 										<a href="/mis?command=mis_list_form" type="button"
 											class="btn btn-default">취소</a>
 										<button type="button" class="btn btn-danger">삭제</button>	
-									</div>
+									</div> -->
 								</div>
 						</form>
 						

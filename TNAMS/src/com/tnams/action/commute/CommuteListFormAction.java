@@ -20,8 +20,9 @@ public class CommuteListFormAction implements Action {
 		String url = "/commute/list.jsp";
 		
 		CommuteDAO cDao = CommuteDAO.getInstance();
+		String LoginUser = (String)request.getSession().getAttribute("LoginUser");
 		
-		List<CommuteVO> commuteList = cDao.selectCommute();
+		List<CommuteVO> commuteList = cDao.selectCommute(LoginUser);
 		
 		request.setAttribute("commuteList", commuteList);
 		
